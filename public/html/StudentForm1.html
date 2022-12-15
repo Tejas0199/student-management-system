@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <title>Document</title>
+  <style>
+    .card:hover {
+      box-shadow: 2px 2px 2px 1px rgba(72, 69, 69, 0.2);
+    }
+
+    p {
+      color: red;
+    }
+    .title{
+      margin-bottom: 5px;
+    }
+    .form-container {
+      width: 100vw;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg- px-5 py-2 border-bottom border-5">
+    <h1 class="navbar-brand fs-2 px-3 text-dark border-start border-end border-dark border-1"> DATA Manager </h1>
+    <div class="navbar-nav">
+      <ul class="nav gap-5">
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="/students">Student DB</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="/" id="logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="my-5" id="main">
+    <form action="/student" id="form" method="post" enctype="multipart/form-data">
+        <div class="d-flex">
+          <div class="form-container" id="form-1">
+          <div class="mx-3 mx-sm-auto col-sm-10">
+            <h4 class="text-secondary ms-3 fs-5">Student FORM-1</h4>
+          </div>
+  
+          <div style="min-width: 350px" class="d-flex flex-wrap align-item-center justify-content-center gap-2 col-sm-10 gap-lg-4 py-5 mx-3 mx-sm-auto pt-3 p-md-5  text-secondary border border-2 rounded rounded-3">
+          
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="firstName">Enter your Name<span class="text-danger">*&nbsp;&nbsp;<span id="nameError"></span></span></label>
+            <input id="firstName" class="form-control control-input" placeholder="ex: JavaScript" name="name" type="text" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="lastName">Enter your LastName</label>
+            <input id="lastName" class="form-control control-input" placeholder="ex: ECMAScript" name="lastName" type="text" maxlength="10"
+              />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="phone">Phone Number<span class="text-danger">*&nbsp;&nbsp;<span id="phoneError"></span></span></label>
+            <input class="form-control" id="phone" placeholder="ex:78XXXXXX12" name="phone" type="text" maxlength="10" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="">Enter Father Name </label>
+            <input class="form-control control-input" placeholder="ex:Brendan Eich" name="fatherName" type="text" maxlength="10" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2">DOB<span class="text-danger">*&nbsp;&nbsp;<span id="DOBError"></span></span></label>
+            <input class="form-control " name="DOB" min=" 1899-01-01" max="2012-01-01" type="date"/>
+          </div>
+  
+          <div class="col-9 col-md-5">
+            <label class="form-label ms-2" for="">Qualification<span class="text-danger">*&nbsp;&nbsp;<span id="qualificationError"></span></span></label>
+            <div class="row gap-2 gap-sm-0">
+              <div class="col-12 col-sm-6">
+                <select class="form-select" name="qualification" id="">
+                  <option value="">Select Course</option>
+                  <option value="SSLC">SSLC</option>
+                  <option value="PUC">PUC</option>
+                  <option value="degree">Degree</option>
+                  <option value="master">Master's</option>
+                  <option value="Others">Others...</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <select class="form-select" name="subject" id="">
+                  <option value="">Select Subject</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Accounts">Accounts</option>
+                  <option value="Economics">Economics</option>
+                  <option value="Others">Others...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" id="phone" for="adhaar"> Adhaar Number <span class="text-danger">*&nbsp;&nbsp;<snap id="adhaarnoError"></snap></span></label>
+            <input class="form-control" id="adhaar" placeholder="ex:XXXX-XXXX-XXXX" name="adhaarno" type="text" maxlength="12" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="control-label ms-2">Gender <span class="text-danger">*&nbsp;&nbsp;<span id="genderError"></span></span></label>
+            <div class="row ms-3 mt-2">
+              <div class="form-check col">
+                <input class="form-check-input" id="male" type="radio" name="gender" value="Male" /> <label for="male" class="form-check-label">Male</label> 
+              </div>
+              <div class="form-check col">
+                <input class="form-check-input" id="female" type="radio" name="gender" value="Male" /> <label for="female" class="form-check-label">Female</label> 
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-9 col-md-5">
+            <label class="form-label ms-2" for="address"> Permanent Address<span class="text-danger">*&nbsp;&nbsp;<span id="permanentAddressError"></span></span></label>
+            <textarea class="form-control" rows="4" id="address" placeholder="max 50 characters" name="permanentAddress" maxlength="50"></textarea>
+          </div>
+          <div class="col-9 col-md-5">
+            <label class="form-label ms-2" for="currentAddress"> Current Address<span class="text-danger">*&nbsp;&nbsp;<span id="currentAddressError"></span></span></label>
+            <textarea class="form-control" rows="4" id="currentAddress" placeholder="max 50 characters" name="currentAddress" maxlength="50"></textarea>
+            <div class="mt-3">
+              <input type="checkbox" class="form-check-input" id="sameAspermanent"><label for="sameAspermanent" class="form label ms-2">Same as permanent </label>
+            </div>
+            
+          </div>
+          <div class="col-9 col-md-5 mt-2 text-center">
+            <button id="nextBtn" type="button" class="btn btn-primary col-12 col-lg-3 toggle-btn">Next > </button>
+          </div>
+        </div>
+        </div>
+  
+        <!------------------- form 2 ------------------>
+        <div class="form-container hidden" id="form-2">
+        <div class="mx-3 mx-sm-auto col-sm-10">
+          <h4 class="text-secondary ms-3 fs-5">Student FORM-2</h4>
+        </div>
+  
+        <div style="min-width: 350px" class="d-flex flex-wrap align-item-center justify-content-center gap-2 col-sm-10 gap-lg-4 py-5 mx-3 mx-sm-auto pt-3 p-md-5  text-secondary border border-2 rounded rounded-3">
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="collegeName">Enter College Name<span class="text-danger">*&nbsp;&nbsp;<span id="collegeNameError"></span></span></label>
+            <input id="collegeName" class="form-control control-input" name="collegeName" type="text" />
+          </div>
+        
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2">Year of passout<span class="text-danger">*&nbsp;&nbsp;<span id="yearOfPassoutError"></span></span></label>
+            <select class="form-select" name="yearOfPassout" id="">
+              <option value="">Select YEAR</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="Others">Others...</option>
+            </select>
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="city">Enter City<span class="text-danger">*&nbsp;&nbsp;<span id="cityError"></span></span></label>
+            <input id="city" class="form-control control-input" name="city" type="text" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="state">Enter State<span class="text-danger">*&nbsp;&nbsp;<span id="stateError"></span></span></label>
+            <input id="state" class="form-control control-input" name="state" type="text" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="profilePhoto">Upload Profile Photo<span class="text-danger">*&nbsp;&nbsp;<span id="profilePhotoError"></span></span></label>
+            <input id="profilePhoto" class="form-control control-input" name="profilePhoto" type="file" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="sslcCertificate">Upload 10th certificate<span class="text-danger">*&nbsp;&nbsp;<span id="sslcCertificateError"></span></span></label>
+            <input id="sslcCertificate" class="form-control control-input" name="sslcCertificate" type="file" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="puCertificate">Upload PUC certificate<span class="text-danger">*&nbsp;&nbsp;<span id="puCertificateError"></span></span></label>
+            <input id="puCertificate" class="form-control control-input" name="puCertificate" type="file" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="degreeCertificate">Upload Degree certificate<span class="text-danger">*&nbsp;&nbsp;<span id="degreeCertificateError"></span></span></label>
+            <input id="degreeCertificate" class="form-control control-input" name="degreeCertificate" type="file" />
+          </div>
+  
+          <div class="col-9 col-md-5 ">
+            <label class="form-label ms-2" for="skills">Enter Tech skills<span class="text-danger">*&nbsp;&nbsp;<span id="skillsError"></span></span></label>
+            <div id="diplaySkills" class="p-3 border d-flex flex-wrap align-content-start gap-2 justify-content-start rounded">
+  
+            </div>
+            <div class="d-flex">
+              <select id="skills" name="skills" class="form-select" id="">
+                <option value="">Select skills</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JScript">JScript</option>
+                <option value="JAVA">JAVA</option>
+                <option value="Python">Python</option>
+                <option value="C++">C++</option>
+                <option value="nodeJS">nodeJS</option>
+                <option value="ReactJS">ReactJS</option>
+                <option value="Angular">Angular</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="col-9 col-md-5 mt-5 mt-md-0">
+            <label class="form-label ms-2" for="description"> Description <span class="text-danger">*&nbsp;&nbsp;<span id="descriptionError"></span></span></label>
+            <textarea class="form-control" rows="4" id="description" placeholder="max 50 characters" name="description" maxlength="50"></textarea>
+          </div>
+          <div class="col-9 col-md-5 text-center">
+            <button class="btn btn-primary col-6 toggle-btn" type="button" id="previousBtn">< Previous</button>
+          </div>
+          <div class="col-9 col-md-5 text-center">
+            <button class="btn btn-primary col-6" type="submit" id="submitBtn">SUBMIT</button>
+          </div>
+        </div>
+        </div>
+        </div>
+    </form>
+
+  </div>
+  <nav class="navbar navbar-light bg- px-5 py-2 border-top border-2">
+    <h5>@copy</h1>
+  </nav>
+
+  
+  <script>
+    let copyToCurrent = false;
+    document.getElementById('logout').addEventListener('click',() => {
+      localStorage.removeItem('user');
+    })
+    const FORM = document.getElementById('form');
+    const student = {
+        skills : []
+      };
+      let form2fields = ['collegeName',"yearOfPassout","skills",'city','state','description']
+    FORM.addEventListener('input',(event) => {
+      const {name,value} = event.target;
+      if(name === 'skills') return;
+      if(form2fields.includes(name)) {
+        student[name] = value;
+        validate([name])
+        return;
+      }
+      if(['profilePhoto','sslcCertificate','puCertificate','degreeCertificate'].includes(name)) {
+        student[name] = value;
+        uploadFile([name])
+        return;
+      }
+      if(name === "permanentAddress" && copyToCurrent) {
+        student.currentAddress = value;
+        FORM.currentAddress.value = value;
+      }
+      if(validateStudent(name,value)) {
+        if(name === "adhaarno" || name === "phone") student[name] = Number(value);
+        else student[name] = value;
+      }
+    })
+
+    function displayError(id, msg) {
+      document.getElementById(id + "Error").innerText = msg;
+    }
+    function validateAll() {
+      let fields = ['name','phone','adhharno','permanentAddress','currentAddress','DOB','qualification','subject','gender'];
+      let allValid = true;
+      fields.forEach(key => {
+        if(! validateStudent(key,student[key])) {
+          allValid = false;
+        }
+      })
+      return allValid;
+    }
+    function validateStudent(name,value) {
+      if(! name) return;
+      if(name === 'name') {
+        if(! value.match(/^[A-Z]/)) {
+          displayError(name,"should starts with uppercase");
+          return false;
+        } else if( value.length < 5){
+          displayError(name,"minimum 5 characters");
+          return false;
+        } else {
+          displayError(name,"");
+          return true;
+        }
+      }
+      if(name === 'phone') {
+        if(! (value + "").match(/^[6-9][0-9]{9}$/)) {
+          displayError(name,"Invalid phone number");
+          return false;
+        } else{
+          displayError(name,"");
+          return true;
+        }
+      }
+      if(name === "adhaarno") {
+        if(! (value + "").match(/^[0-9]{12}$/)) {
+          displayError(name,"Invalid adhaar number");
+          return false;
+        } else{
+          displayError(name,"");
+          return true;
+        }
+      }
+      if(name === "permanentAddress" || name === "currentAddress") {
+        if(value.length < 15) {
+          displayError(name,"should be more then 15 characters");
+          return false;
+        } else{
+          displayError(name,"");
+          return true;
+        }
+      }
+      if(name === "DOB" && value ) {
+        displayError(name,"");
+        return true
+      }
+      if((name === "qualification" || name === "subject") && value) {
+        if(name === "subject") name = "qualification"
+        displayError(name,"")
+        return true;
+      }
+      if(name === "gender" && value) {
+        displayError(name,"")
+        return true;
+      }
+      return true;
+    }
+    document.getElementById('sameAspermanent').addEventListener('click',({target}) => {
+      const  { checked } = target;
+      if(checked ) {
+        copyToCurrent = checked;
+        FORM.currentAddress.value = FORM.permanentAddress.value
+
+        student.currentAddress = student.permanentAddress
+        displayError('currentAddress',"")
+      } else {
+        copyToCurrent = checked;
+      }
+    })
+    function requiredField() {
+      let require = ["name","phone","adhaarno","DOB","qualification","gender","subject","permanentAddress","currentAddress"];
+      let allValid = true;
+      require.forEach(key => {
+        if(! student[key]) {
+          if(key === "subject") key = 'qualification';
+          allValid = false;
+          displayError(key,"should not be empty");
+        }
+      })
+      return allValid;
+    }
+    document.getElementById('nextBtn').addEventListener('click',() => {
+      let allvalid = true;
+      for(const key in student) {
+        if(! validateStudent(key,student[key])) {
+          allvalid = false;
+          break;
+        }
+      }
+      if(allvalid) {
+        allvalid = requiredField()
+      
+      }
+      if(allvalid) {
+        document.getElementById('form-1').classList.toggle('hidden');
+        document.getElementById('form-2').classList.toggle('hidden');
+
+      };
+    })
+    FORM.addEventListener('submit',(event) => {
+      console.log(validate(),validateAll(),uploadFile())
+      if(!  (validate() && validateAll() && uploadFile())) {
+        event.preventDefault();
+      }
+    })
+    document.getElementById('previousBtn').addEventListener('click',() => {
+      document.getElementById('form-1').classList.toggle('hidden');
+      document.getElementById('form-2').classList.toggle('hidden');
+    })
+
+    function createSkills(skill) {
+        const container = document.getElementById('diplaySkills');
+        const btn = document.createElement('button');
+        btn.innerText = skill;
+        btn.classList = "btn btn-sm btn-primary rounded rounded-pill";
+        container.appendChild(btn);
+      }
+      document.getElementById('skills').addEventListener('change',(event) => {
+        const {value} = event.target;
+        console.log(student);
+        if(! student.skills.includes(value) && value) {
+          student.skills.push(value);
+          createSkills(value);
+        }
+          validate(["skills"])
+      })
+      function validate(require) {
+        require ||= ['collegeName',"yearOfPassout","skills",'city','state','description'];
+        let allValid = true;
+        require.forEach(key => {
+          if(key === 'skills') {
+            if(student.skills.length < 2) {
+              displayError(key,"select atleast 2 skills");
+              allValid = false;
+            } else {
+              displayError(key,"");
+            }
+          } else {
+            // console.log(! student[key]);
+            if(! student[key]) {
+              displayError(key,"fleids must filled");
+              allValid = false;
+            } else {
+              displayError(key,"");
+            }
+          }
+        })
+        console.log(allValid);
+        return allValid;
+      }
+      function uploadFile(fileFeilds) {
+        fileFeilds ||= ['profilePhoto','sslcCertificate','puCertificate','degreeCertificate'];
+        let allValid = true ;
+        console.log("heloo")
+        fileFeilds.forEach( key => {
+          if(! student[key]) {
+            displayError(key,"please upload images");
+            allValid = false;
+          } else {
+            displayError(key,"");
+          }
+        })
+        return allValid;
+      }
+  </script>
+</body>
+
+</html>
